@@ -10,5 +10,5 @@ fn main() {
     let _args = Cli::from_args();
 
     arithmeticks::validate(&_args.state);
-    arithmeticks::calculate(&_args.state);
+    println!("{}", arithmeticks::calculate(&_args.state));
 }

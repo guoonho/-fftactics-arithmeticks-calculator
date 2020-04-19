@@ -10,7 +10,7 @@ pub fn validate(_input: &String) -> bool {
     true
 }
 
-pub fn calculate(_input: &String) {
+pub fn calculate(_input: &String) -> String {
     let s = _input.split(",");
     let mut result = String::from("");
     let mut units = Vec::<Unit>::new();
@@ -38,7 +38,8 @@ pub fn calculate(_input: &String) {
     result.push_str(&exp_results);
     result.push_str(&level_results);
     result.push_str(&height_results);
-    println!("{}", result);
+
+    result
 }
 
 fn check_ct(_units: &Vec::<Unit>) -> String{
@@ -209,7 +210,7 @@ fn check_height(_units: &Vec::<Unit>) -> String{
 
 fn is_prime(_input: &i8) -> bool {
     let mut flag = true;
-    if (_input == &1 || _input == &4){
+    if _input == &1 || _input == &4 {
         flag = false;
     }
 
@@ -253,5 +254,8 @@ fn is_mult_5(_input: &i8) -> bool {
 
 #[test]
 fn test_validate() {
-    assert!(validate("a/true/0/12/4/1,a/false/3/4/6/1,e/true/2/14/4/2,e/true/11/77/5/1.5".to_string()));
+    let test = "true/2/12/4/3,false/2/4/6/3,true/2/14/4/6,true/11/77/5/4".to_string();
+    let result = calculate(&test);
+
+    assert!(result.contains("ct/prime "));
 }
